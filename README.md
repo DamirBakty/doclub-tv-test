@@ -21,7 +21,11 @@ $ docker-compose up -d
 ## Создать суперпользователя
 
 ```shell
-$ docker compose run --rm django python manage.py createsuperuser --no-input
+$ docker-compose exec django sh
+```
+
+```shell
+$ python manage.py createsuperuser
 ```
 
 ## Вход в админку
