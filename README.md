@@ -23,3 +23,9 @@ $ docker-compose up -d
 ```shell
 $ docker compose run --rm django python manage.py createsuperuser --no-input
 ```
+
+## Вход в админку
+- Перейдите по http://127.0.0.1:8000/admin
+
+## Swagger, автодокументация для разработчиков
+- Перейдите по http://127.0.0.1:8000/swagger
