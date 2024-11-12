@@ -1,5 +1,6 @@
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
-
+from .files import File
 from common.models import BaseModel, User
 from .course import Course
 from .drug import Drug
@@ -31,6 +32,7 @@ class Module(BaseModel):
         blank=True,
     )
     disclaimer = models.TextField(verbose_name="Дисклеймер")
+    files = GenericRelation(File, related_query_name="module")
 
     class Meta:
         verbose_name = "Модуль"

@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from django.contrib.contenttypes.admin import GenericTabularInline
 
 from course.models import (
     Course,
@@ -22,7 +23,7 @@ class ModuleInline(admin.TabularInline):
     extra = 0
 
 
-class FileInline(admin.TabularInline):
+class FileInline(GenericTabularInline):
     model = File
     extra = 0
 

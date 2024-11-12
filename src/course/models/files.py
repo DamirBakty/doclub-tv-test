@@ -1,24 +1,16 @@
-from common.models import BaseModel
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from .course import Course
-from .module import Module
+
+from common.models import BaseModel
 
 
 class File(BaseModel):
-    course = models.ForeignKey(
-        Course,
-        on_delete=models.SET_NULL,
-        null=True,
-        verbose_name="Курс",
-        related_name="files",
+    content_type = models.ForeignKey(
+        ContentType, on_delete=models.CASCADE, related_name="files"
     )
-    module = models.ForeignKey(
-        Module,
-        on_delete=models.SET_NULL,
-        null=True,
-        verbose_name="Модуль",
-        related_name="files",
-    )
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey("content_type", "object_id")
     file = models.FileField(upload_to="files/%Y/%m/%d", verbose_name="Файл")
 
     class Meta:

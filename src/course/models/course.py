@@ -1,7 +1,9 @@
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 
 from common.models import BaseModel, User
 from .drug import Drug
+from .files import File
 
 
 class Course(BaseModel):
@@ -15,6 +17,7 @@ class Course(BaseModel):
         to=Drug, related_name="courses", verbose_name="Препараты", blank=True
     )
     disclaimer = models.TextField(verbose_name="Дисклеймер")
+    files = GenericRelation(File, related_query_name="course")
 
     class Meta:
         verbose_name = "Курс"
